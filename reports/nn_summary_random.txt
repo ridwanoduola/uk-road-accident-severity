@@ -1,0 +1,8 @@
+Neural networks | 24,907 dev rows | 5-fold CV (random) | fold metrics = mean over 3 seeds; ± = sd across folds
+
+                               accuracy       macro_F1   balanced_acc  recall_slight recall_serious   recall_fatal precision_fatal  seed-to-seed sd (macro_F1)
+model                                                                                                                                                         
+MLP one-hot [256,128,64]  0.773 ± 0.004  0.768 ± 0.004  0.799 ± 0.004  0.756 ± 0.003  0.706 ± 0.008  0.934 ± 0.006   0.605 ± 0.010                      0.0013
+MLP embeddings [256,128]  0.773 ± 0.004  0.768 ± 0.004  0.798 ± 0.004  0.757 ± 0.004  0.705 ± 0.007  0.931 ± 0.007   0.604 ± 0.011                      0.0012
+MLP embeddings [128,64]   0.772 ± 0.005  0.768 ± 0.005  0.798 ± 0.004  0.757 ± 0.004  0.705 ± 0.009  0.931 ± 0.008   0.604 ± 0.011                      0.0011
+MLP one-hot [128,64]      0.772 ± 0.005  0.767 ± 0.005  0.797 ± 0.004  0.756 ± 0.003  0.706 ± 0.009  0.930 ± 0.006   0.605 ± 0.011                      0.0014

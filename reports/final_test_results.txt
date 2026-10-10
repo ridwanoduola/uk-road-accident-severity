@@ -1,0 +1,29 @@
+FINAL TEST-SET EVALUATION (evaluated once) | dev 24,907 rows | test 4,396 rows | bootstrap 2000 resamples
+
+model                                                      accuracy           macro-F1 [95% CI]       recall fatal [95% CI] prec fatal rec slight rec serious
+Majority class                                                0.416     0.196 [0.191, 0.201]       0.000 [0.000, 0.000]      0.000      1.000       0.000
+LogReg (balanced)                                             0.770     0.765 [0.752, 0.778]       0.889 [0.868, 0.909]      0.627      0.771       0.706
+HistGradientBoosting (tuned)                                  0.779     0.775 [0.762, 0.788]       0.931 [0.914, 0.948]      0.633      0.758       0.720
+Neural net MLP one-hot [256,128,64] (5-seed ensemble)         0.778     0.774 [0.761, 0.787]       0.935 [0.918, 0.950]      0.624      0.759       0.716
+
+Neural net single-seed test macro-F1 over 5 seeds: mean 0.773, sd 0.0021
+
+PAIRED COMPARISONS vs HistGradientBoosting (tuned) (positive = HGB better)
+  vs LogReg (balanced): macro-F1 diff +0.0104 [95% CI +0.0052, +0.0159] | McNemar: HGB-only-correct=91, other-only-correct=53, p=0.002
+  vs Neural net MLP one-hot [256,128,64] (5-seed ensemble): macro-F1 diff +0.0010 [95% CI -0.0022, +0.0043] | McNemar: HGB-only-correct=25, other-only-correct=23, p=0.885
+
+CONFUSION MATRICES (rows = true, cols = predicted; order: slight, serious, fatal)
+LogReg (balanced)
+[[1410  213  206]
+ [ 229 1184  264]
+ [  31   68  791]]
+
+HistGradientBoosting (tuned)
+[[1387  234  208]
+ [ 198 1207  272]
+ [  28   33  829]]
+
+Neural net MLP one-hot [256,128,64] (5-seed ensemble)
+[[1388  224  217]
+ [ 191 1201  285]
+ [  27   31  832]]

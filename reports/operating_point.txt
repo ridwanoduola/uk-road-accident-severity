@@ -1,0 +1,35 @@
+OPERATING POINT & CALIBRATION | dev 24,907 | test 4,396 | fatal share in test 20.2%
+
+1) HOW WELL DOES THE MODEL RANK AND CALIBRATE P(fatal)?  (test set)
+   ROC-AUC (fatal vs rest) 0.927 | PR-AUC 0.706 (a random ranking would give PR-AUC 0.202) | 3-class one-vs-rest AUC 0.892
+   probabilities                               Brier(fatal)  ECE(fatal)  3-class log-loss
+   class-weighted final model                        0.0852      0.0463            0.5984
+   unweighted model                                  0.0810      0.0117            0.5840
+   unweighted + isotonic (fitted on dev OOF)         0.0810      0.0118                  
+   (lower is better; class weighting distorts probabilities, so use the unweighted model's probabilities)
+
+2) DECISION THRESHOLDS FOR 'FATAL' (chosen on dev out-of-fold probabilities, reported on test)
+                                                            recall_fatal  precision_fatal  flagged_share  false_alarms_per_fatal_caught  accuracy
+rule                                                                                                                                             
+class-weighted model, argmax (the final model)                     0.931            0.633          0.298                          0.579     0.779
+unweighted model, argmax                                           0.902            0.636          0.287                          0.572     0.778
+unweighted, flag fatal if P>=0.428 (dev recall target 90%)         0.912            0.638          0.289                          0.567     0.780
+unweighted, flag fatal if P>=0.124 (dev recall target 95%)         0.943            0.601          0.318                          0.664     0.768
+unweighted, flag fatal if P>=0.022 (dev recall target 98%)         0.978            0.418          0.473                          1.390     0.645
+
+3) ILLUSTRATION: fatal precision if the same sensitivity/specificity held at other fatal shares
+   (assumption-heavy: real-world performance would differ; cite official statistics for the true prevalence)
+   rule                                                                prev 20%   prev 5%   prev 2%   prev 1%
+   class-weighted model, argmax (the final model)                         0.630     0.264     0.122     0.064
+   unweighted model, argmax                                               0.633     0.266     0.123     0.065
+   unweighted, flag fatal if P>=0.428 (dev recall target 90%)             0.635     0.268     0.124     0.066
+   unweighted, flag fatal if P>=0.124 (dev recall target 95%)             0.597     0.238     0.108     0.057
+   unweighted, flag fatal if P>=0.022 (dev recall target 98%)             0.415     0.130     0.055     0.028
+
+4) COST-BASED DECISIONS  (ILLUSTRATIVE cost matrix, rows = truth, cols = prediction; order slight, serious, fatal)
+   [[0.0, 1.0, 2.0], [3.0, 0.0, 1.0], [10.0, 4.0, 0.0]]
+                                                  mean_cost  recall_fatal  precision_fatal  accuracy
+rule                                                                                                
+unweighted argmax                                     0.463         0.902            0.636     0.778
+class-weighted final model                            0.439         0.931            0.633     0.779
+minimum expected cost (unweighted probabilities)      0.421         0.936            0.621     0.761

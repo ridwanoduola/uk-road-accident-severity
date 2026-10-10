@@ -1,0 +1,71 @@
+ERROR ANALYSIS of the final HistGradientBoosting | test rows 4,396 | accuracy 0.779
+
+1) PERMUTATION IMPORTANCE (drop in test macro-F1 when a variable is shuffled; baseline 0.775; 10 repeats)
+                   variable  macroF1_drop  sd_F1  fatal_recall_drop
+               vehicle_type        0.2431 0.0076             0.2394
+           light_conditions        0.1355 0.0030             0.2278
+                speed_limit        0.1266 0.0044             0.2739
+         weather_conditions        0.0435 0.0021             0.0215
+    road_surface_conditions        0.0198 0.0019            -0.0066
+          junction_location        0.0056 0.0005             0.0157
+   skidding_and_overturning        0.0025 0.0010             0.0015
+              sex_of_driver        0.0020 0.0008             0.0049
+ hit_object_off_carriageway        0.0018 0.0008             0.0008
+vehicle_leaving_carriageway        0.0017 0.0010             0.0008
+      first_point_of_impact        0.0004 0.0006            -0.0015
+       age_of_oldest_driver       -0.0000 0.0006             0.0006
+
+2) WHERE DO THE ERRORS COME FROM? (feature profile = exact combination of all input values)
+               profile type    n  share of test  model accuracy  share of ALL errors  dev-majority-label accuracy
+  profile never seen in dev 2359          0.537           0.753                0.599                          NaN
+           seen once in dev  615          0.140           0.779                0.140                        0.657
+seen >=2x, labels all agree  604          0.137           0.873                0.079                        0.864
+    seen >=2x, labels MIXED  818          0.186           0.784                0.182                        0.716
+   If most errors sit in 'MIXED' profiles, they are largely irreducible label noise, not model weakness.
+
+2b) THE SAME ANALYSIS USING ONLY THE FIVE CORE VARIABLES AS THE 'PROFILE' (speed, light, vehicle, weather, road surface)
+    (the profile in 2) includes age, which the model barely uses, so most profiles look 'never seen' for a trivial reason)
+               profile type    n  share of test  model accuracy  share of ALL errors  dev-majority-label accuracy
+  profile never seen in dev   19          0.004           0.789                0.004                          NaN
+           seen once in dev   20          0.005           0.450                0.011                        0.650
+seen >=2x, labels all agree   43          0.010           0.791                0.009                        0.767
+    seen >=2x, labels MIXED 4314          0.981           0.780                0.975                        0.769
+
+3) PERFORMANCE BY SUBGROUP (fatal recall/precision shown only when n_fatal / n_flagged >= 20)
+
+speed_limit_cat    n  accuracy  n_fatal  fatal recall  fatal precision
+             30 2580     0.791      297         0.882            0.577
+             60  592     0.725      288         0.983            0.652
+             20  458     0.806       42         0.905            0.494
+             40  360     0.769       51         0.804            0.612
+             70  231     0.805      182         1.000            0.802
+             50  171     0.696       30         0.767            0.469
+        missing    4     0.500        0           NaN              NaN
+
+light_conditions    n  accuracy  n_fatal  fatal recall  fatal precision
+        daylight 3137     0.821      408         0.902            0.706
+        darkness 1259     0.674      482         0.956            0.585
+
+                vehicle_type    n  accuracy  n_fatal  fatal recall  fatal precision
+                   only cars 2405     0.756      583         0.954            0.609
+          at least one biped 1217     0.842       31         0.548              NaN
+            at least one van  576     0.766      167         0.892            0.677
+               biped and van  140     0.679       94         0.989            0.679
+                       other   53     0.755       14           NaN            0.650
+data missing or out of range    5     0.600        1           NaN              NaN
+
+               sex_of_driver    n  accuracy  n_fatal  fatal recall  fatal precision
+                   all males 2176     0.780      523         0.914            0.652
+             male and female 1000     0.800      173         0.954            0.650
+data missing or out of range  699     0.755       98         0.969            0.534
+                 all females  521     0.762       96         0.948            0.632
+
+          weather_conditions    n  accuracy  n_fatal  fatal recall  fatal precision
+                        fine 3506     0.789      749         0.948            0.638
+                       other  742     0.736      113         0.823            0.612
+data missing or out of range  131     0.763       21         0.952            0.606
+                 fog or mist   17     0.647        7           NaN              NaN
+
+ age_status    n  accuracy  n_fatal  fatal recall  fatal precision
+age present 3532     0.783      764         0.925            0.646
+  age blank  864     0.762      126         0.968            0.567

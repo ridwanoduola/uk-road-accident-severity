@@ -1,0 +1,79 @@
+1) CLEANING LOG
+   n_input: 31,647
+   id_shared_but_not_identical_rows: 0
+   exact_duplicate_records_removed: 1,172
+     of which had blank target: 0
+   target_case_variants_fixed: 50
+   speed_limit_minus1_to_nan: 24
+   age_blank: 6,235
+   age_unusual_flagged: 21
+   age_under16_motor_only_set_to_nan: 6
+   target_unrecognised_label: 0
+   n_labeled: 29,303
+   n_unlabeled_set_aside: 1,172
+
+2) CLASS DISTRIBUTION (labeled rows)
+                       n   pct
+accident_severity             
+slight             12190  41.6
+serious            11180  38.2
+fatal               5933  20.2
+
+3) DUPLICATES (computed on the raw file)
+   accident_index: distinct=30,475 of 31,647 rows; rows sharing an ID=2,344
+   rows identical on ALL columns incl. ID: 2,344
+   -> if the two numbers match, shared IDs are always exact copies (ID is a reliable key)
+
+4) FEATURE-PROFILE REPEATS AND LABEL NOISE (after removing exact duplicate records)
+   labeled rows: 29,303 | distinct feature profiles: 18,792
+   rows whose profile appears at least twice: 14,152 (48.3%); singleton-profile rows: 15,151
+   rows in repeated profiles that contain conflicting labels: 8,000 (56.5% of repeated-profile rows)
+   leave-one-out majority-label accuracy on repeated-profile rows: 74.7% (always-predict-'slight' baseline on all rows: 41.6%)
+   NOTE: this is an optimistic-but-honest guide to how predictable severity is from these
+   features. Singleton profiles cannot be assessed this way, so it is NOT a global ceiling.
+
+5) FLAGGED UNUSUAL AGES (<16 or >100) by vehicle_type
+accident_severity   serious  slight
+vehicle_type                       
+at least one biped       12       1
+only cars                 2       5
+
+6) AGE BLANK vs SEX_OF_DRIVER
+sex_of_driver  all females  all males  data missing or out of range  male and female
+age_missing                                                                         
+age blank              199       1013                          4163              604
+age present           3536      13331                           580             5877
+
+7) AGE BLANK vs VEHICLE_TYPE
+age_missing                   age blank  age present
+vehicle_type                                        
+at least one biped                 1676         6348
+at least one van                    715         3020
+biped and van                       219          708
+data missing or out of range         52            5
+only cars                          3219        12974
+other                                98          269
+
+8) SEVERITY BY MISSINGNESS (is 'missing' informative?)
+   age_missing:
+accident_severity  fatal  serious  slight
+age_missing                              
+0                   21.6     39.1    39.3
+1                   15.0     34.5    50.5
+   speed_missing:
+accident_severity  fatal  serious  slight
+speed_missing                            
+0                   20.3     38.2    41.6
+1                    8.7     17.4    73.9
+   number of 'data missing' labels per row vs severity (%):
+accident_severity  fatal  serious  slight
+row_0                                    
+0                   21.2     38.7    40.0
+1                   19.4     34.6    46.0
+2                   18.7     37.7    43.7
+3                   18.5     30.9    50.6
+4                    9.3     38.6    52.1
+
+9) UNLABELED ROWS (set aside): do they look different?
+   speed_limit mean labeled=36.6 vs unlabeled=36.6
+   light_conditions darkness share labeled=29.8% vs unlabeled=29.1%

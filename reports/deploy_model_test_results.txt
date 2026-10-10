@@ -1,0 +1,12 @@
+DEPLOYMENT MODEL | inputs: speed_limit, light_conditions, vehicle_type, weather_conditions, road_surface_conditions
+train 24,907 rows | test 4,396 rows (fatal share 20.2%)
+
+Test-set quality of P(fatal): ROC-AUC 0.923 | Brier 0.0828 | ECE 0.0118   (out-of-fold on dev: ECE 0.0046)
+
+sensitivity level      threshold  fatal recall  fatal prec.  flagged  false alarms/fatal caught  accuracy  macro-F1
+Argmax (no threshold)          -         0.904        0.629    0.291                       0.59     0.773     0.768
+Standard                   0.428         0.904        0.629    0.291                       0.59     0.773     0.768
+High                       0.094         0.946        0.556    0.345                       0.80     0.744     0.738
+Maximum                    0.020         0.982        0.375    0.530                       1.66     0.591     0.590
+
+saved models/triage_model.joblib | lookup table rows: 480 | versions: {'scikit-learn': '1.6.1', 'pandas': '2.3.3', 'numpy': '2.1.0', 'python': '3.13.5'}

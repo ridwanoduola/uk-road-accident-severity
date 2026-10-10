@@ -1,0 +1,8 @@
+# Runtime requirements: enough to run the app and the tests. Versions match the environment the model was trained in
+# (the saved model is a pickle, so scikit-learn must match). On Streamlit Community Cloud pick Python 3.13 in
+# "Advanced settings" when deploying.
+streamlit>=1.40
+pandas==2.3.3
+numpy==2.1.0
+scikit-learn==1.6.1
+joblib

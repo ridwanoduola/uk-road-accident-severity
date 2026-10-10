@@ -1,0 +1,19 @@
+HistGradientBoosting tuning | 24,907 dev rows | 40 trials | 468s
+
+Best parameters:
+{
+  "learning_rate": 0.05687214427596044,
+  "max_iter": 450,
+  "max_leaf_nodes": 43,
+  "min_samples_leaf": 27,
+  "l2_regularization": 0.004477937681032769,
+  "max_depth": 6,
+  "native_cat": true
+}
+
+          macro_F1          accuracy          recall_fatal      precision_fatal   
+default   0.769 ± 0.004     0.774 ± 0.004     0.931 ± 0.006     0.607 ± 0.011     
+tuned     0.771 ± 0.005     0.775 ± 0.004     0.928 ± 0.005     0.610 ± 0.012     
+
+Paired fold-level macro-F1 gain (tuned - default): mean +0.0016, sd 0.0022, positive in 3/5 folds
+(optimistic: parameters were selected on these same folds; use the test set for the final number)

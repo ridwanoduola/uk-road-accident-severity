@@ -1,0 +1,18 @@
+ABLATION (tuned HGB, balanced weights, 5-fold CV on 24,907 development rows; mean ± sd across folds)
+
+input set                                      #vars        macro-F1        accuracy    fatal recall     fatal prec.  diff vs A  p (corr.)
+A  all 12 variables                               12   0.771 ± 0.005   0.775 ± 0.004   0.928 ± 0.005   0.610 ± 0.012    +0.0000      1.000
+B  scene-only (no 4 post-crash variables)          8   0.766 ± 0.003   0.770 ± 0.003   0.926 ± 0.006   0.607 ± 0.012    +0.0046      0.018
+C  B without driver sex and age                    6   0.765 ± 0.003   0.769 ± 0.003   0.927 ± 0.008   0.606 ± 0.012    +0.0058      0.013
+D  core five                                       5   0.761 ± 0.003   0.766 ± 0.003   0.929 ± 0.006   0.597 ± 0.013    +0.0097      0.003
+E  top three (vehicle, light, speed)               3   0.729 ± 0.004   0.736 ± 0.004   0.950 ± 0.006   0.539 ± 0.010    +0.0418      0.000
+
+diff vs A = macro-F1 of A minus macro-F1 of the smaller set (positive = the smaller set is worse).
+
+LOOKUP-TABLE BENCHMARK (most common training label for each exact combination of the variables; same folds)
+variables used                                 #profiles (dev)        macro-F1        accuracy  in-sample acc.
+C  B without driver sex and age                            862   0.752 ± 0.004   0.759 ± 0.005           0.778
+D  core five                                               480   0.757 ± 0.006   0.763 ± 0.006           0.774
+E  top three (vehicle, light, speed)                        75   0.729 ± 0.004   0.736 ± 0.004           0.737
+
+in-sample acc. = accuracy of the lookup table on the very rows it was built from (an upper bound for these variables).

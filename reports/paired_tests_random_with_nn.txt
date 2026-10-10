@@ -1,0 +1,16 @@
+Reference model: HistGradientBoosting (balanced)  (mean macro_F1 = 0.7689) | mode=random | 5 folds
+Positive diff = reference is better. Corrected t-test is the one to quote.
+
+                           model  mean macro_F1 diff (ref - model)  sd of diff  p (naive paired t)  p (corrected t) ref better in folds
+             LogReg (no weights)                            0.0137      0.0035               0.001            0.004                 5/5
+             LightGBM (balanced)                            0.0078      0.0031               0.005            0.019                 5/5
+        Decision tree (balanced)                            0.0082      0.0035               0.007            0.026                 5/5
+               LogReg (balanced)                            0.0074      0.0036               0.010            0.037                 5/5
+      Random forest (no weights)                            0.0082      0.0043               0.012            0.045                 5/5
+              XGBoost (balanced)                            0.0039      0.0023               0.019            0.064                 5/5
+        MLP embeddings [256,128]                            0.0013      0.0009               0.033            0.100                 5/5
+LogReg + interactions (balanced)                            0.0050      0.0038               0.043            0.123                 4/5
+         MLP embeddings [128,64]                            0.0013      0.0019               0.214            0.380                 3/5
+            MLP one-hot [128,64]                            0.0014      0.0022               0.225            0.394                 4/5
+        Random forest (balanced)                            0.0011      0.0022               0.304            0.476                 4/5
+        MLP one-hot [256,128,64]                            0.0006      0.0021               0.550            0.686                 3/5

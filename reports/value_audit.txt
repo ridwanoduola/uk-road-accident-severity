@@ -1,0 +1,191 @@
+Rows: 31,647 | Columns audited: 13 (excluding accident_index)
+Fully duplicated rows (ignoring accident_index): 10,030
+
+==========================================================================================
+COLUMN: speed_limit
+==========================================================================================
+blank/empty entries: 0 (0.00%) | unique raw values: 7
+non-numeric, non-blank entries: 0
+numeric summary:
+count    31647.00
+mean        36.57
+std         13.84
+min         -1.00
+25%         30.00
+50%         30.00
+75%         40.00
+max         70.00
+speed limits outside [20, 30, 40, 50, 60, 70]: 25
+speed_limit
+-1    25
+all distinct values (sorted):
+20, 30, 40, 50, 60, 70, -1
+
+==========================================================================================
+COLUMN: light_conditions
+==========================================================================================
+blank/empty entries: 0 (0.00%) | unique raw values: 2
+value counts (repr shows stray spaces/case):
+    22,210  'daylight'
+     9,437  'darkness'
+no whitespace/case variants found
+
+==========================================================================================
+COLUMN: weather_conditions
+==========================================================================================
+blank/empty entries: 0 (0.00%) | unique raw values: 4
+value counts (repr shows stray spaces/case):
+    25,152  'fine'
+     5,407  'other'
+       970  'data missing or out of range'
+       118  'fog or mist'
+no whitespace/case variants found
+
+==========================================================================================
+COLUMN: road_surface_conditions
+==========================================================================================
+blank/empty entries: 0 (0.00%) | unique raw values: 5
+value counts (repr shows stray spaces/case):
+    22,092  'dry'
+     8,761  'wet or damp'
+       374  'other'
+       365  'data missing or out of range'
+        55  'flood over 3cm. deep'
+no whitespace/case variants found
+
+==========================================================================================
+COLUMN: vehicle_type
+==========================================================================================
+blank/empty entries: 0 (0.00%) | unique raw values: 6
+value counts (repr shows stray spaces/case):
+    17,487  'only cars'
+     8,662  'at least one biped'
+     4,040  'at least one van'
+     1,000  'biped and van'
+       395  'other'
+        63  'data missing or out of range'
+no whitespace/case variants found
+
+==========================================================================================
+COLUMN: junction_location
+==========================================================================================
+blank/empty entries: 0 (0.00%) | unique raw values: 3
+value counts (repr shows stray spaces/case):
+    17,204  'at or within 20 metres of junction'
+    12,973  'not at or within 20 metres of junction'
+     1,470  'data missing or out of range'
+no whitespace/case variants found
+
+==========================================================================================
+COLUMN: skidding_and_overturning
+==========================================================================================
+blank/empty entries: 0 (0.00%) | unique raw values: 3
+value counts (repr shows stray spaces/case):
+    24,387  'no skidding or overturning'
+     5,226  'at least one vehicle skidded or overturned'
+     2,034  'data missing or out of range'
+no whitespace/case variants found
+
+==========================================================================================
+COLUMN: vehicle_leaving_carriageway
+==========================================================================================
+blank/empty entries: 0 (0.00%) | unique raw values: 3
+value counts (repr shows stray spaces/case):
+    24,019  'none leaving carriageway'
+     5,661  'at least one vehicle leaving carriageway'
+     1,967  'data missing or out of range'
+no whitespace/case variants found
+
+==========================================================================================
+COLUMN: hit_object_off_carriageway
+==========================================================================================
+blank/empty entries: 0 (0.00%) | unique raw values: 3
+value counts (repr shows stray spaces/case):
+    26,129  'none hit an object'
+     3,655  'at least one vehicle hit an object'
+     1,863  'data missing or out of range'
+no whitespace/case variants found
+
+==========================================================================================
+COLUMN: first_point_of_impact
+==========================================================================================
+blank/empty entries: 0 (0.00%) | unique raw values: 4
+value counts (repr shows stray spaces/case):
+    23,002  'at least one vehicle with frontal impact'
+     6,008  'other points of impact'
+     1,333  'no impact'
+     1,304  'data missing or out of range'
+no whitespace/case variants found
+
+==========================================================================================
+COLUMN: sex_of_driver
+==========================================================================================
+blank/empty entries: 0 (0.00%) | unique raw values: 4
+value counts (repr shows stray spaces/case):
+    15,494  'all males'
+     7,015  'male and female'
+     5,122  'data missing or out of range'
+     4,016  'all females'
+no whitespace/case variants found
+
+==========================================================================================
+COLUMN: age_of_oldest_driver
+==========================================================================================
+blank/empty entries: 6,450 (20.38%) | unique raw values: 93
+non-numeric, non-blank entries: 0
+numeric summary:
+count    25197.00
+mean        47.25
+std         16.78
+min          6.00
+25%         34.00
+50%         47.00
+75%         59.00
+max        101.00
+ages <16 or >100: 22
+age_of_oldest_driver
+6.0      1
+10.0     1
+11.0     2
+12.0     3
+13.0     6
+14.0     2
+15.0     6
+101.0    1
+all distinct values (sorted):
+10.0, 101.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0, 17.0, 18.0, 19.0, 20.0, 21.0, 22.0, 23.0, 24.0, 25.0, 26.0, 27.0, 28.0, 29.0, 30.0, 31.0, 32.0, 33.0, 34.0, 35.0, 36.0, 37.0, 38.0, 39.0, 40.0, 41.0, 42.0, 43.0, 44.0, 45.0, 46.0, 47.0, 48.0, 49.0, 50.0, 51.0, 52.0, 53.0, 54.0, 55.0, 56.0, 57.0, 58.0, 59.0, 6.0, 60.0, 61.0, 62.0, 63.0, 64.0, 65.0, 66.0, 67.0, 68.0, 69.0, 70.0, 71.0, 72.0, 73.0, 74.0, 75.0, 76.0, 77.0, 78.0, 79.0, 80.0, 81.0, 82.0, 83.0, 84.0, 85.0, 86.0, 87.0
+
+==========================================================================================
+COLUMN: accident_severity
+==========================================================================================
+blank/empty entries: 1,172 (3.70%) | unique raw values: 7
+value counts (repr shows stray spaces/case):
+    12,672  'slight'
+    11,592  'serious'
+     6,159  'fatal'
+     1,172  ''
+        25  'Serious'
+        19  'Slight'
+         8  'Fatal'
+INCONSISTENT VARIANTS (same text after strip/lowercase):
+  'slight': ['slight', 'Slight']
+  'serious': ['serious', 'Serious']
+  'fatal': ['fatal', 'Fatal']
+
+==========================================================================================
+MISSINGNESS CO-OCCURRENCE (rows where the 'missing' label or blank appears)
+==========================================================================================
+age_of_oldest_driver           6450
+sex_of_driver                  5122
+skidding_and_overturning       2034
+vehicle_leaving_carriageway    1967
+hit_object_off_carriageway     1863
+junction_location              1470
+first_point_of_impact          1304
+accident_severity              1172
+weather_conditions              970
+road_surface_conditions         365
+vehicle_type                     63
+light_conditions                  0
+speed_limit                       0
+rows with 0 missing: 22,847 | with >=1: 8,800 | with >=4: 1,994

@@ -1,0 +1,11 @@
+# Everything needed to reproduce the full project (experiments, neural network, tuning, plots).
+-r requirements.txt
+scipy
+matplotlib
+xgboost
+lightgbm
+optuna
+pytest
+# PyTorch: on Windows/Linux CPU-only machines use
+#   pip install torch --index-url https://download.pytorch.org/whl/cpu
+torch
