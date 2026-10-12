@@ -5,9 +5,7 @@
 
 **Live demo: https://uk-road-accident-severity.streamlit.app/**
 
-<!--
 ![App screenshot](docs/app_screenshot.png)
--->
 
 Can the severity of a UK road accident (**slight, serious or fatal**) be predicted from facts available at the scene, and do **neural networks** beat traditional machine learning at it? This project answers both questions end to end: data audit and cleaning, exploratory analysis, a statistically careful model comparison, a locked test set, error analysis, and a deployed app.
 
