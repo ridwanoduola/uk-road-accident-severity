@@ -17,7 +17,7 @@ from src.explain import shapley_values  # noqa: E402
 from src.features import core_features  # noqa: E402
 
 MODEL_PATH = ROOT / "models" / "triage_model.joblib"
-REPO_URL = ""          # e.g. "https://github.com/<your-username>/uk-road-accident-severity"
+REPO_URL = "https://github.com/ridwanoduola/uk-road-accident-severity"
 DEFAULT_LEVEL = "High"
 CLASSES = ["slight", "serious", "fatal"]
 COLORS = {"slight": "#4C9F70", "serious": "#E0A030", "fatal": "#C0392B"}
@@ -216,7 +216,8 @@ with right:
             "- **Not validated** for operational use, and not a causal explanation of accidents.")
 
 st.divider()
-foot = "Built with Python, scikit-learn and Streamlit."
+foot = ("Built with Python, scikit-learn and Streamlit. Contains public sector information licensed under the "
+        "Open Government Licence v3.0 (Department for Transport, Road Safety Data).")
 if REPO_URL:
     foot += f" [Source code and write-up]({REPO_URL})"
 st.caption(foot)
